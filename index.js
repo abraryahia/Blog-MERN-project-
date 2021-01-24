@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const  { router }  = require('./routes');
 //const  routeblog  = require('./routes/bolg')
 
-
-mongoose.connect('mongodb://localhost:27017/blogs', {useNewUrlParser: true});
+const { MONGODB_URI } = process.env;
+mongoose.connect( MONGODB_URI  ,{useNewUrlParser: true});
 
 app.use(express.json());
 
