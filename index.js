@@ -10,7 +10,8 @@ mongoose.connect( MONGODB_URI  ,{useNewUrlParser: true});
 
 app.use(express.json());
 
-const {port = 3000 } = process.env;
+const {port = 3000 } =process.env.PORT;
+
 
 app.use('/',router);
 
