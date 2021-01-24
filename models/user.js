@@ -11,7 +11,7 @@ const userSchema = Schema({
     lname:{
           type: String,
           maxLength: 140,
-          required: true    },
+          required: true  },
     username:{
         type: String,
         unique: true,
