@@ -38,7 +38,7 @@ app.get((err , req , res , next)=>{
       res.status(503).end();
 })
 
-const {PORT=8080}=process.env;
+const {PORT=3000}=process.env;
 app.listen(process.env.PORT ||PORT,()=>{
     console.log(`Connected ${port} `);
 })
