@@ -48,10 +48,10 @@ router.get('/',auth, async (req, res, next) => {
 });
 
 //get one user 
-router.get('/:id',auth, async (req, res, next) => {
-   const {params :{id}} = req 
+router.get('/:_id',auth, async (req, res, next) => {
+   const {params :{_id}} = req 
   try {
-    const user = await getuser({id});
+    const user = await getuser({_id});
     res.json(user);
   } catch (e) {
     next(e);
