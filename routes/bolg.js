@@ -100,7 +100,7 @@ try {
 });
 
 //Add new blog
-route.post('/',auth, async (req , res , next )=>{
+route.post('/add',auth, async (req , res , next )=>{
      const { body , user: { id }} = req ;
     try{
     const blog = await createblog({ ...body , auther : id });
