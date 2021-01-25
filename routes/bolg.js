@@ -125,7 +125,7 @@ route.get('/profile', auth,async (req, res, next) => {
 
 //edit one blog 
 route.patch('/:_id',auth, async (req, res, next) => {
-  const { params : {_id} , body ,user: { id } } = req;
+  const { params : {_id} , body  } = req;
 try {
   const blogs = await editBlog (id,{_id} , body );
   res.json(blogs);
@@ -136,7 +136,7 @@ try {
 
 //Delete one blog 
 route.delete('/:_id',auth, async (req, res, next) => {
-  const { params : {_id} } = req;
+  const { params : {_id} , user: { id } } = req;
 try {
   const blogs = await deleteById({_id});
   res.send('Delete Done')
