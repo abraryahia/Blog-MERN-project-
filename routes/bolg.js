@@ -127,11 +127,11 @@ route.get('/profile', auth,async (req, res, next) => {
 route.patch('/:_id',auth, async (req, res, next) => {
   const { params : {_id} , body  } = req;
 try {
-  const blogs = await editBlog (id,{_id} , body );
+  const blogs = await editBlog ({_id} , body );
   res.json(blogs);
 } catch (e) {
   next(e);
-  
+
 }
 });
 
