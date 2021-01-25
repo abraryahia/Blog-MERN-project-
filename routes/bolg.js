@@ -121,7 +121,7 @@ try {
 //   }
 // }) 
 //to add photo
-route.post('/add',async (req, res, next) => {
+router.post('/add',async (req, res, next) => {
     console.log(req.user);
 const upload = multer({ storage: storage }).single("photo");
 
@@ -129,13 +129,8 @@ const upload = multer({ storage: storage }).single("photo");
         const { body, user:{id} } = req;
         if(req.file!=undefined)
         body.photo= req.file.path;
-        try{
-      const  blog = createblog({ ...body, auther: id })
-        res.json(blog);
-      }
-        catch(e){
-          next(e)
-        };
+        
+     createblog({ ...body, auther: id }).then(blog=>res.json(blog)).catch(e=>next(e));
 
     });
     
