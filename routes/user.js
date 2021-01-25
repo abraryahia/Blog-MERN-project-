@@ -3,6 +3,7 @@ const {
     register, 
     login, 
     getAll, 
+    getuser,
     editUser,
     removeAcc,
     addfollowing,
@@ -36,14 +37,22 @@ router.post('/login', async (req, res, next) => {
 });
 
 
-
-
-
 //get  user 
 router.get('/users',auth, async (req, res, next) => {
   try {
     const users = await getAll();
     res.json(users);
+  } catch (e) {
+    next(e);
+  }
+});
+
+//get one user 
+router.get('/user/:id',auth, async (req, res, next) => {
+   const {params :{id}} = req 
+  try {
+    const user = await getuser({id});
+    res.json(user);
   } catch (e) {
     next(e);
   }

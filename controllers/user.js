@@ -31,6 +31,9 @@ const user = await User.findOne({ username }).exec();
 //get all user  
 const getAll = () => User.find({}).exec();
 
+//get one user 
+const getuser = (id) => User.findById(id).exec();
+
 //user edit his data 
 const editUser = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
 
@@ -82,6 +85,7 @@ module.exports = {
    register ,
   login,
   getAll,
+  getuser,
   editUser,
   removeAcc,
   addfollowing,
