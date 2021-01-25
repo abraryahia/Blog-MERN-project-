@@ -10,9 +10,6 @@ mongoose.connect( MONGODB_URI  ,{useNewUrlParser: true});
 
 app.use(express.json());
 
-const {port = 3000 } =process.env.PORT;
-
-
 app.use('/',router);
 
 //app.use('/blog' ,authMW, routeblog);
@@ -41,7 +38,7 @@ app.get((err , req , res , next)=>{
       res.status(503).end();
 })
 
-
-app.listen(port , function(){
+const {PORT=8080}=process.env;
+app.listen(process.env.PORT ||PORT,()=>{
     console.log(`Connected ${port} `);
 })
