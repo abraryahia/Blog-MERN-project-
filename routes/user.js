@@ -38,7 +38,7 @@ router.post('/login', async (req, res, next) => {
 
 
 //get  user 
-router.get('/users',auth, async (req, res, next) => {
+router.get('/',auth, async (req, res, next) => {
   try {
     const users = await getAll();
     res.json(users);
@@ -48,7 +48,7 @@ router.get('/users',auth, async (req, res, next) => {
 });
 
 //get one user 
-router.get('/user/:id',auth, async (req, res, next) => {
+router.get('/:id',auth, async (req, res, next) => {
    const {params :{id}} = req 
   try {
     const user = await getuser({id});
