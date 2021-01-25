@@ -14,10 +14,8 @@ const blogSchema = new Schema({
         maxLength: 1400,
         required: true,
     },
-    photo: { 
-        data: Buffer, 
-        contentType: String ,
-    },
+    photo: String ,
+    
     createdAt: {
         type: Date,
         default: new Date()
