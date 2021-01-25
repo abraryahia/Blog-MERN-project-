@@ -131,6 +131,7 @@ try {
   res.json(blogs);
 } catch (e) {
   next(e);
+  
 }
 });
 
