@@ -16,6 +16,7 @@ app.use('/',router);
 
 app.get('*',(req,res,next)=>{
     res.send('Not-Found')
+    res.status(404).send('Not Found ');
 })
  
 app.get((err , req , res , next)=>{
