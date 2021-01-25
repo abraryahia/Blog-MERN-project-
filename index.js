@@ -40,5 +40,5 @@ app.get((err , req , res , next)=>{
 
 const {PORT=3000}=process.env;
 app.listen(process.env.PORT ||PORT,()=>{
-    console.log(`Connected ${port} `);
+    console.log(`Connected ${PORT} `);
 })
