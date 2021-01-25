@@ -128,7 +128,7 @@ route.post('/add',auth,async (req, res, next) => {
         if(req.file!=undefined)
         body.photo= req.file.path;
         try{
-        const blog =  createblog({ ...body, auther: id })
+        const blog =  await createblog({ ...body, auther: id })
          res.json(blog);
               } 
          catch (e) {
