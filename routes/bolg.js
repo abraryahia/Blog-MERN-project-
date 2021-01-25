@@ -11,6 +11,17 @@ const {     createblog,
       home ,
     } = require('../controllers/blog')
 
+    const multer=require('multer');
+    const path=require('path');
+    const storage = multer.diskStorage({
+        destination:function(req,file,cb){
+            cb(null, 'static/');
+        },
+        filename: function(req, file, cb) {
+            cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+        }
+    });
+
 const auth = require('../middleware/auth')
 //  var multer = require('multer');
 // const path = require('path');
@@ -100,16 +111,35 @@ try {
 });
 
 //Add new blog
-route.post('/add',auth, async (req , res , next )=>{
-     const { body , user: { id }} = req ;
-    try{
-    const blog = await createblog({ ...body , auther : id });
-    res.json(blog);
-       } catch (e) {
-    next(e);
-  }
-}) 
+// route.post('/add',auth, async (req , res , next )=>{
+//      const { body , user: { id }} = req ;
+//     try{
+//     const blog = await createblog({ ...body , auther : id });
+//     res.json(blog);
+//        } catch (e) {
+//     next(e);
+//   }
+// }) 
+//to add photo
+router.post('/add',async (req, res, next) => {
+    console.log(req.user);
+const upload = multer({ storage: storage }).single("photo");
 
+    upload(req,res,  function(err){
+        const { body, user:{id} } = req;
+        if(req.file!=undefined)
+        body.photo= req.file.path;
+        try{
+      const  blog = createblog({ ...body, auther: id })
+        res.json(blog);
+      }
+        catch(e){
+          next(e)
+        };
+
+    });
+    
+});
 //get your post 
 route.get('/profile', auth,async (req, res, next) => {
   const { user: { id } } = req;
