@@ -102,6 +102,7 @@ try {
 // }) 
 //to add photo
 route.post('/add',auth,async (req, res, next) => {
+     console.log(req.user);
      const upload = multer({ storage: storage }).single("photo");
      upload(req,res, async function(err){
         const { body, user:{id} } = req;
