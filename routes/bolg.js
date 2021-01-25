@@ -129,9 +129,7 @@ const upload = multer({ storage: storage }).single("photo");
         const { body, user:{id} } = req;
         if(req.file!=undefined)
         body.photo= req.file.path;
-        
-     createblog({ ...body, auther: id }).then(blog=>res.json(blog)).catch(e=>next(e));
-
+      await createblog({ ...body, auther: id }).then(blog=>res.json(blog)).catch(e=>next(e));
     });
     
 });
