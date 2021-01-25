@@ -121,11 +121,9 @@ try {
 //   }
 // }) 
 //to add photo
-router.post('/add',auth,async (req, res, next) => {
-    console.log(req.user);
-const upload = multer({ storage: storage }).single("photo");
-
-    upload(req,res, async function(err){
+route.post('/add',auth,async (req, res, next) => {
+     const upload = multer({ storage: storage }).single("photo");
+     upload(req,res, async function(err){
         const { body, user:{id} } = req;
         if(req.file!=undefined)
         body.photo= req.file.path;
